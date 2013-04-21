@@ -1,0 +1,20 @@
+///
+var id = "$modId$";
+var $objectName$ = function () {}
+if ( typeof exports !== "undefined" ) 
+{
+	$objectName$ = exports;
+} 
+else 
+{
+	$objectName$ = root.$objectName$ = {};
+}
+
+var log = function( inLog, logType )
+{
+	if( logType == undefined )
+		logType = LogTypes.NORMAL;
+		
+	appEvents.emit( "log", id, inLog, logType );
+}
+/*HEADEND*/
