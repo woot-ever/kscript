@@ -539,34 +539,6 @@ TcprWrapper.server = new function()
 		return false;
 	}
 	
-	this.replacePlayer = function( oldPlayer, newPlayer )
-	{
-		for( var player in self.players )
-		{
-			var tempPlayer = self.players[ player ];
-			if( tempPlayer == oldPlayer )
-			{
-				log( "Player: " + oldPlayer.name + " replaced!" );
-				self.players[ player ] = newPlayer;
-				return;
-			}
-		}
-	}
-	
-	this.replacePlayerByName = function( oldPlayerName, newPlayer )
-	{
-		for( var player in self.players )
-		{
-			var tempPlayer = self.players[ player ];
-			if( tempPlayer.name == oldPlayerName )
-			{
-				log( "Player: " + oldPlayer.name + " replaced!" );
-				self.players[ player ] = newPlayer;
-				return;
-			}
-		}
-	}
-	
 	this.message = function( message )
 	{
 		TcprWrapper.rcon.send( "/msg " + message);
