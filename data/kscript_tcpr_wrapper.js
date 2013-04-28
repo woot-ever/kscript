@@ -185,9 +185,12 @@ TcprWrapper.parser = new function()
 			dataArray.splice(0, 1);
 		} else if (match = dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) (?:has joined) (.+)$/)) {
 			var clan = match[1] == undefined ? "" : match[1].trim();
-			var player = match[2];
+			var playerName = match[2];
 			var team = match[3];
-			//console.log("JOINED A TEAM (clan="+clan+", player="+player+", team="+team+")");
+			var player = TcprWrapper.server.getPlayerByName(playerName);
+			if (player) {
+				player.team = team;
+			}
 			dataArray.splice(0, 1);
 		} else if (dataLine.match(/^Unnamed player is now known as (.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20})$/)) {
 			TcprWrapper.rcon.send( "/players" );
@@ -205,7 +208,7 @@ TcprWrapper.parser = new function()
 			var clan = match[1] == undefined ? "" : match[1].trim();
 			var playerName = match[2];
 
-			var player = TcprWrapper.server.getPlayerByName(playerName);			
+			var player = TcprWrapper.server.getPlayerByName(playerName);
 			TcprWrapper.server.removePlayer( playerName );
 			TcprWrapper.events.emit( "playerLeft", player );
 			
@@ -611,6 +614,7 @@ TcprWrapper.Player = function( clanTag, name, id, ip )
 	
 	this.clanTag = clanTag;
 	this.name = name;
+	this.team = -1;
 	this.id = id;
 	this.ip = ip;
 	this.data = {};
@@ -679,6 +683,10 @@ TcprWrapper.Player = function( clanTag, name, id, ip )
 	
 	this.getData = function() {
 		return this.data;
+	}
+	
+	this.getTeam = function() {
+		return this.team;
 	}
 }
 
