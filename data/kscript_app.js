@@ -268,13 +268,9 @@ appEvents.on( "log", function( id, inLog, logType )
 console.log('KScript version '+_version);
 logsManager.changeFocus( "ks", true );
 ks = require( "./kscript_tcpr_wrapper" );
-ks.rcon.connect( config.server.ip, config.server.port, config.server.rconPassword );
 
-ks.events.on( "init", function()
-{
-	console.log();
-	logsManager.changeFocus( "manager", true );
-	var manager = new kscript_manager.ModManager();
-	//var updater = new require( "./kscript_updater" );
-	promptHandler.command();
-});
+console.log();
+logsManager.changeFocus( "manager", true );
+var manager = new kscript_manager.ModManager();
+promptHandler.command();
+ks.rcon.connect( config.server.ip, config.server.port, config.server.rconPassword );

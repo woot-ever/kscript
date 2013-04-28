@@ -334,6 +334,7 @@ KScript.ModManager = function()
 		var scriptsToBeLoaded = this.analyze();
 		this.header = fs.readFileSync( "./data/kscript_scriptheader", "utf-8" );
 		this.loadScripts( scriptsToBeLoaded );
+		appEvents.emit("loaded");
 	}
 	
 	this.createTempScript = function( script )
