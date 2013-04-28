@@ -355,7 +355,7 @@ TcprWrapper.parser = new function()
 			var player = TcprWrapper.server.getPlayerByName( playerName );
 			
 			if (player) {
-				TcprWrapper.events.emit( "rconChat", player, chatLine, dataTime );
+				TcprWrapper.events.emit("rconChat", player, chatLine, dataTime);
 				
 				for (var commandIndex in TcprWrapper.rcon.commands) {
 					var tempRconCommand = TcprWrapper.rcon.commands[commandIndex];
