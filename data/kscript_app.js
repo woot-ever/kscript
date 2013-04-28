@@ -66,9 +66,9 @@ var logsManager = new function()
 	
 	this.log = function( id, message, logType )
 	{
-		if( this.logs[ id ] == undefined )
-			this.logs[ id ] = [];
-			
+		if (!logType) logType = LogTypes.NORMAL;
+		if (this.logs[ id ] == undefined) this.logs[ id ] = [];
+		
 		this.logs[ id ].push( { log_type : logType, message : message } );
 		
 		this.writeLog( message, logType );
@@ -85,7 +85,7 @@ var logsManager = new function()
 				console.log( message.red );
 			break;
 			case LogTypes.DEBUG:
-				console.log( message.toString().yellow );
+				console.log( message.yellow );
 			break;
 			case LogTypes.SUCCESS:
 				console.log( message.green );
