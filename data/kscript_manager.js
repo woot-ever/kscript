@@ -72,9 +72,18 @@ KScript.ModManager = function () {
 	this.getFolders = function () {
 		var extensionsList = fs.readdirSync("extensions");
 		var modsList = fs.readdirSync("mods");
-
-		this.files["mods"] = modsList;
-		this.files["extensions"] = extensionsList;
+		this.files["extensions"] = [];
+		this.files["mods"] = [];
+		for (var i in extensionsList) {
+			if (fs.statSync("./extensions/" + extensionsList[i]).isDirectory()) {
+				this.files["extensions"].push(extensionsList[i]);
+			}
+		}
+		for (var i in modsList) {
+			if (fs.statSync("./mods/" + modsList[i]).isDirectory()) {
+				this.files["mods"].push(modsList[i]);
+			}
+		}
 	}
 
 	this.getScript = function (scriptType, scriptFolder) {
