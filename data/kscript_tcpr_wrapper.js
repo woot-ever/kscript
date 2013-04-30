@@ -190,6 +190,7 @@ TcprWrapper.parser = new function()
 			var player = TcprWrapper.server.getPlayerByName(playerName);
 			if (player) {
 				player.team = team;
+				TcprWrapper.events.emit("teamChange", player, team);
 			}
 			dataArray.splice(0, 1);
 		} else if (dataLine.match(/^Unnamed player is now known as (.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20})$/)) {
