@@ -264,9 +264,13 @@ TcprWrapper.parser = new function()
 				victimName = match[2];
 				deathType = DeathTypes.CYANIDE
 			} else if (match = dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) died under falling rocks$/)) {
-				// Died
+				// Falling rocks
 				victimName = match[2];
-				deathType = DeathTypes.DIED;
+				deathType = DeathTypes.ROCKS;
+			} else if (match = dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) was killed by a zombie$/)) {
+				// Zombie
+				victimName = match[2];
+				deathType = DeathTypes.ZOMBIE;
 			}
 			
 			var attacker = TcprWrapper.server.getPlayerByName(attackerName);

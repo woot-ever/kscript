@@ -50,8 +50,10 @@ DeathTypes = {
 	SQUASHED : 6,
 	FELL : 7,
 	CYANIDE : 8,
-	DIED : 9,
-	UNKNOWN : 10
+	ROCKS : 9,
+	ZOMBIE : 10,
+	UNKNOWN : 11,
+	DIED : 12, // WARNING: Deprecated in KScript v12
 };
 
 var logsManager = new function () {
