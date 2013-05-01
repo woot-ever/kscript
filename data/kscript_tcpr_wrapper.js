@@ -193,6 +193,14 @@ TcprWrapper.parser = new function()
 				TcprWrapper.events.emit("teamChange", player, team);
 			}
 			dataArray.splice(0, 1);
+		} else if (match = dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) (?:is now spectating)$/)) {
+			var clan = match[1] == undefined ? "" : match[1].trim();
+			var playerName = match[2];
+			var player = TcprWrapper.server.getPlayerByName(playerName);
+			if (player) {
+				//player.spectating = true;
+			}
+			dataArray.splice(0, 1);
 		} else if (dataLine.match(/^Unnamed player is now known as (.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20})$/)) {
 			TcprWrapper.rcon.send( "/players" );
 			dataArray.splice(0, 1);
