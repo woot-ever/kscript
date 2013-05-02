@@ -275,7 +275,7 @@ TcprWrapper.parser = new function()
 				// Falling rocks
 				victimName = match[2];
 				deathType = DeathTypes.ROCKS;
-			} else if (match = dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) was killed by a zombie$/)) {
+			} else if (match = dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) was killed by zombie$/)) {
 				// Zombie
 				victimName = match[2];
 				deathType = DeathTypes.ZOMBIE;
