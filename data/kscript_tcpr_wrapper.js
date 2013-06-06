@@ -281,9 +281,11 @@ TcprWrapper.parser = new function()
 				deathType = DeathTypes.ZOMBIE;
 			}
 			
-			var attacker = TcprWrapper.server.getPlayerByName(attackerName);
-			var victim = TcprWrapper.server.getPlayerByName(victimName);
-			TcprWrapper.events.emit( "playerKilled", victim, attacker, deathType );
+			if (deathType != DeathTypes.UNKNOWN) {
+				var attacker = TcprWrapper.server.getPlayerByName(attackerName);
+				var victim = TcprWrapper.server.getPlayerByName(victimName);
+				TcprWrapper.events.emit( "playerKilled", victim, attacker, deathType );
+			}
 			
 			dataArray.splice(0, 1);
 		} else if (match = dataLine.match(/^(List of Players ------ use RCON to get IP and hwid info)$/) || this.parsingPlayers) {
