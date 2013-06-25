@@ -150,7 +150,9 @@ TcprWrapper.parser = new function()
 	{
 		var dataTime = dataArray[0].substr(1, 8);
 		var dataLine = dataArray[0].substr(11);
-		if (dataLine.match(/^(Can't spawn units depleted)$/)) {
+		if (dataLine.match(/^\/msg (.+)$/)) {
+			dataArray.splice(0, 1);
+		} else if (dataLine.match(/^(Can't spawn units depleted)$/)) {
 			if( !TcprWrapper.unitsDepleted )
 			{
 				TcprWrapper.events.emit( "unitsDepleted" );
