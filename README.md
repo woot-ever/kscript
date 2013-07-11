@@ -19,3 +19,4 @@ If you have this error:
   errno: 'ECONNREFUSED',
   syscall: 'connect' }`
 You didn't put the correct informations in kscript_config.cfg and/or sv_tcpr is disabled on your server.
+Also make sure that 
