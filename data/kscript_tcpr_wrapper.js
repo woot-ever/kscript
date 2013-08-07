@@ -191,9 +191,10 @@ TcprWrapper.parser = new function()
 			var team = match[3];
 			var player = TcprWrapper.server.getPlayerByName(playerName);
 			if (player) {
+				var oldTeam = player.team;
 				player.team = team;
 				player.spectating = false;
-				TcprWrapper.events.emit("teamChange", player, team);
+				TcprWrapper.events.emit("teamChange", player, team, oldTeam);
 			}
 			dataArray.splice(0, 1);
 		} else if (match = dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) (?:is now spectating)$/)) {
