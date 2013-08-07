@@ -192,6 +192,7 @@ TcprWrapper.parser = new function()
 			var player = TcprWrapper.server.getPlayerByName(playerName);
 			if (player) {
 				player.team = team;
+				player.spectating = false;
 				TcprWrapper.events.emit("teamChange", player, team);
 			}
 			dataArray.splice(0, 1);
@@ -200,7 +201,9 @@ TcprWrapper.parser = new function()
 			var playerName = match[2];
 			var player = TcprWrapper.server.getPlayerByName(playerName);
 			if (player) {
-				//player.spectating = true;
+				player.team = null;
+				player.spectating = true;
+				TcprWrapper.events.emit("playerSpectating", player);
 			}
 			dataArray.splice(0, 1);
 		} else if (dataLine.match(/^Unnamed player is now known as (.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20})$/)) {
@@ -604,6 +607,7 @@ TcprWrapper.Player = function( clanTag, name, id, ip )
 	this.clanTag = clanTag;
 	this.name = name;
 	this.team = null;
+	this.spectating = false;
 	this.id = id;
 	this.ip = ip;
 	this.data = {};
@@ -676,6 +680,10 @@ TcprWrapper.Player = function( clanTag, name, id, ip )
 	
 	this.getTeam = function() {
 		return this.team;
+	}
+	
+	this.isSpectating = function() {
+		return this.spectating;
 	}
 }
 
