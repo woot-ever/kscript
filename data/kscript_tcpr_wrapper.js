@@ -603,7 +603,7 @@ TcprWrapper.Player = function( clanTag, name, id, ip )
 	
 	this.clanTag = clanTag;
 	this.name = name;
-	this.team = -1;
+	this.team = null;
 	this.id = id;
 	this.ip = ip;
 	this.data = {};
