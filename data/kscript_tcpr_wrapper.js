@@ -228,7 +228,7 @@ TcprWrapper.parser = new function()
 			TcprWrapper.events.emit( "playerLeft", player );
 			
 			dataArray.splice(0, 1);
-		} else if (dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) (slew|gibbed|shot|hammered|pushed|assisted|squashed|fell|took|died) ?(.+)?$/)) {
+		} else if (dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) (slew|gibbed|shot|hammered|pushed|assisted|was (?:squashed|killed)|fell|took|died) ?(.+)?$/)) {
 			var attackerName = "", victimName = "", deathType = DeathTypes.UNKNOWN;
 			if (match = dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) slew (.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) with (?:his|her) sword$/)) {
 				// Slew
