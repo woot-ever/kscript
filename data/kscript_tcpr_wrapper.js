@@ -34,6 +34,7 @@ var log = function( inLog, logType )
 	Bug fixes
 */
 
+TcprWrapper.matchEnded = false;
 TcprWrapper.unitsDepleted = false;
 TcprWrapper.rconBlock = false;
 TcprWrapper.matchStartTime;
@@ -165,16 +166,20 @@ TcprWrapper.parser = new function()
 			TcprWrapper.matchStartTime = new Date().getTime();
 			TcprWrapper.rconBlock = false;
 			TcprWrapper.unitsDepleted = false;
+			TcprWrapper.matchEnded = false;
 			TcprWrapper.events.emit( "matchStarted" );
 			dataArray.splice(0, 1);
 		} else if (dataLine.match(/^(\*Match Ended\*)$/)) {
-			TcprWrapper.matchEndTime = new Date().getTime();
-			setTimeout( function()
-			{
-				TcprWrapper.rconBlock = true;
+			if (!TcprWrapper.matchEnded) {
+				TcprWrapper.matchEndTime = new Date().getTime();
 				TcprWrapper.matchEnded = true;
-			}, 1000 );
-			TcprWrapper.events.emit( "matchEnded" );
+				/* setTimeout( function()
+				{
+					TcprWrapper.rconBlock = true;
+					TcprWrapper.matchEnded = true;
+				}, 1000 ); */
+				TcprWrapper.events.emit( "matchEnded" );
+			}
 			dataArray.splice(0, 1);
 		} else if (match = dataLine.match(/^(.+) (wins the game!)$/)) {
 			var team = match[1];
