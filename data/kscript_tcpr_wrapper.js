@@ -74,7 +74,7 @@ TcprWrapper.rcon = new function()
 			return;
 		}
 			
-		self.socket.write( data + "\n", "utf8", function()
+		self.socket.write( data + "\n", "utft8", function()
 		{
 		});		
 	}
@@ -260,7 +260,7 @@ TcprWrapper.parser = new function()
 				attackerName = match[2];
 				victimName = match[4];
 				deathType = DeathTypes.HAMMERED;
-			} else if (match = dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) pushed (.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) (?:on a spike trap|to his death)$/)) {
+			} else if (match = dataLine.match(/^(.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) pushed (.{0,5}[ \.,\["\{\}><\|\/\(\)\\+=])?([\S]{1,20}) (?:on a spike trap|to (?:his|her) death)$/)) {
 				// Pushed
 				attackerName = match[2];
 				victimName = match[4];
