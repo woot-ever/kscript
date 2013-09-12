@@ -74,7 +74,7 @@ TcprWrapper.rcon = new function()
 			return;
 		}
 			
-		self.socket.write( data + "\n", "utft8", function()
+		self.socket.write( data + "\n", "utf8", function()
 		{
 		});		
 	}
